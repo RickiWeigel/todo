@@ -7,7 +7,11 @@ import { FilterEnum } from '../types/filter.enum';
 })
 export class TodosService {
   todosSig = signal<TodoInterface[]>([]);
-  filterSig = signal<FilterEnum>(FilterEnum.all)
+  filterSig = signal<FilterEnum>(FilterEnum.all);
+
+  changeFilter(filterName: FilterEnum): void {
+    this.filterSig.set(filterName)
+  }
 
   addTodo(text: string): void {
     const newTodo: TodoInterface = {
