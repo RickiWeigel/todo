@@ -14,8 +14,15 @@ export class FooterComponent {
   filterEnum = FilterEnum;
 
   activeCount = computed(() => {
-    return this.todosService.todosSig().filter((todo) => !todo.isCompleted).length;
+    return this.todosService.todosSig().filter((todo) => !todo.isCompleted)
+      .length;
   });
+
+  noTodosClass = computed(() => this.todosService.todosSig().length === 0);
+
+  itemsLeftText = computed(
+    () => ` Item${this.activeCount() !== 1 ? 's' : ''} left`
+  );
 
   changeFilter(event: Event, filterName: FilterEnum): void {
     event.preventDefault();
