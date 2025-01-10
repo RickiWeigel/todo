@@ -1,10 +1,9 @@
 <section class="main">
     <ul class="todo-list">
-        @for (todo of visibleTodos(); track $index){
+        @for (todo of visibleTodos(); track todo.id){
         <div>
             {{todo.text}}
         </div>
-
         }
     </ul>
 </section>
