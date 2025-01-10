@@ -1,9 +1,7 @@
 <section class="main">
     <ul class="todo-list">
         @for (todo of visibleTodos(); track todo.id){
-        <div>
-            {{todo.text}}
-        </div>
+            <app-todo></app-todo>
         }
     </ul>
 </section>

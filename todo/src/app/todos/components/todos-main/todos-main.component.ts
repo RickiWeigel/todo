@@ -1,10 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
 import { TodosService } from '../../services/todos.service';
 import { FilterEnum } from '../../types/filter.enum';
+import { TodoComponent } from "../todo/todo.component";
 
 @Component({
   selector: 'app-todos-main',
-  imports: [],
+  imports: [TodoComponent],
   templateUrl: './todos-main.component.html',
   styleUrl: './todos-main.component.scss',
 })

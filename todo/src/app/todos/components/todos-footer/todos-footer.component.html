@@ -1,5 +1,6 @@
-<footer class="footer">
-    <span class="todo-count"><strong>{{activeCount()}}</strong></span>
+<footer class="footer" [class.hidden]="noTodosClass()">
+    <span class="todo-count"><strong>{{activeCount()}}</strong>{{itemsLeftText()}}</span>
+
     <ul class="filters">
         <li>
             <a href="" [class]="{selected: filterSig() === filterEnum.all}"
