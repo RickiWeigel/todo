@@ -16,8 +16,12 @@ export class HeaderComponent {
     this.text = target.value;
   }
 
-  addTodo():void{
-    this.todosService.addTodo(this.text);
-    this.text = '';
+  addTodo(): void {
+    if (this.text.trim()) {
+      this.todosService.addTodo(this.text);
+      this.text = '';
+    } else {
+      console.log('Eingabe ist leer!');
+    }
   }
 }
