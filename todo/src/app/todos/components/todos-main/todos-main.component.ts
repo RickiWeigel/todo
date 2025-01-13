@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { TodosService } from '../../services/todos.service';
 import { FilterEnum } from '../../types/filter.enum';
-import { TodoComponent } from "../todo/todo.component";
+import { TodoComponent } from '../todo/todo.component';
 
 @Component({
   selector: 'app-todos-main',
@@ -11,6 +11,7 @@ import { TodoComponent } from "../todo/todo.component";
 })
 export class MainComponent {
   todosService = inject(TodosService);
+  editingId: string | null = null;
 
   visibleTodos = computed(() => {
     const todos = this.todosService.todosSig();
@@ -23,4 +24,8 @@ export class MainComponent {
     }
     return todos;
   });
+
+  setEditingId(editingId: string | null): void {
+    this.editingId = editingId;
+  }
 }

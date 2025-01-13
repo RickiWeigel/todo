@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TodoInterface } from '../../types/todo.interface';
 
 
@@ -8,8 +8,23 @@ import { TodoInterface } from '../../types/todo.interface';
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss'
 })
-export class TodoComponent {
+export class TodoComponent implements OnInit {
 
 @Input({required: true}) todo!: TodoInterface;
+@Input({required: true}) isEditing!: boolean;
+@Output() setEditing: EventEmitter<string | null> = new EventEmitter();
 
+editingText: string = '';
+
+ngOnInit(): void {
+  this.editingText = this.todo.text;
+}
+
+changeText(event: Event){
+  const value = ((event.target as HTMLInputElement).value)
+  this.editingText = value
+}
+changeTodo():void {
+
+}
 }

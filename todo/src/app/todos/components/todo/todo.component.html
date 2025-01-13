@@ -1,5 +1,12 @@
-<li>
+<li [class]="{editing: isEditing}">
     <div class="view">
         <label>{{todo.text}}</label>
     </div>
+    @if (isEditing) {
+        <input 
+          class="edit" 
+          [value]="editingText" 
+          (keyup)="changeText($event)" 
+          (keyup.enter)="changeTodo()">
+      }
 </li>
