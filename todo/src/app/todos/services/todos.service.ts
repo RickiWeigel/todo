@@ -19,7 +19,7 @@ export class TodosService {
       isCompleted: false,
       id: Math.random().toString(16),
     };
-    this.todosSig.update((todos) => [newTodo, ...todos]);
+    this.todosSig.update((todos) => [...todos, newTodo]);
   }
 
   changeTodo(id: string, text: string): void {
@@ -32,9 +32,17 @@ export class TodosService {
     this.todosSig.update((todos) => todos.filter((todo) => todo.id !== id));
   }
 
-  toggleTodo(id:string){
+  toggleTodo(id: string): void {
     this.todosSig.update((todos) =>
-      todos.map((todo) => (todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo))
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
+  }
+
+  toggleAll(isCompleted: boolean): void {
+    this.todosSig.update((todos) =>
+      todos.map((todo) => ({ ...todo, isCompleted }))
     );
   }
 }
