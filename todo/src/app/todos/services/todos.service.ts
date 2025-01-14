@@ -10,7 +10,7 @@ export class TodosService {
   filterSig = signal<FilterEnum>(FilterEnum.all);
 
   changeFilter(filterName: FilterEnum): void {
-    this.filterSig.set(filterName)
+    this.filterSig.set(filterName);
   }
 
   addTodo(text: string): void {
@@ -22,5 +22,19 @@ export class TodosService {
     this.todosSig.update((todos) => [newTodo, ...todos]);
   }
 
-  constructor() {}
+  changeTodo(id: string, text: string): void {
+    this.todosSig.update((todos) =>
+      todos.map((todo) => (todo.id === id ? { ...todo, text } : todo))
+    );
+  }
+
+  removeTodo(id: string): void {
+    this.todosSig.update((todos) => todos.filter((todo) => todo.id !== id));
+  }
+
+  toggleTodo(id:string){
+    this.todosSig.update((todos) =>
+      todos.map((todo) => (todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo))
+    );
+  }
 }

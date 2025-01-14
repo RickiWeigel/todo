@@ -1,12 +1,10 @@
 <li [class]="{editing: isEditing}">
     <div class="view">
-        <label>{{todo.text}}</label>
+        <input type="checkbox" class="toggle" [checked]="todo.isCompleted" (change)="toggleTodo()">
+        <label (dblclick)="setTodoOnEditdMode()">{{todo.text}}</label>
+        <button class="destroy" (click)="removeTodo()"> </button>
     </div>
     @if (isEditing) {
-        <input 
-          class="edit" 
-          [value]="editingText" 
-          (keyup)="changeText($event)" 
-          (keyup.enter)="changeTodo()">
-      }
+    <input class="edit" [value]="editingText" (keyup)="changeText($event)" (keyup.enter)="changeTodo()">
+    }
 </li>
